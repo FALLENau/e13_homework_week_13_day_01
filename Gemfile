@@ -8,14 +8,10 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-# devise for auth
-gem 'devise'
-# simple_token_authentication for JWTs
-gem 'simple_token_authentication'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -36,6 +32,12 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors', :require => 'rack/cors'
+
+gem 'devise'
+gem 'responders'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
