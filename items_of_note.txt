@@ -1,0 +1,36 @@
+
+-- This code stops cors from blocking requests. --
+
+File Gemfile
+	gem 'rack-cors', :require => 'rack/cors'
+
+File config.ru
+	require 'rack/cors'
+	use Rack::Cors do
+
+		# allow all origins in development
+		allow do
+			origins '*'
+			resource '*',
+					:headers => :any,
+					:methods => [:get, :post, :delete, :put, :options]
+		end
+	end
+
+-- To create a new user --
+
+Route to post to => /users
+
+json structure
+
+{
+	"user": {
+		"email": email address,
+		"password": password
+	}
+}
+
+-- other than that the app is basically the product of the instruction files --
+
+https://github.com/lost-in-Code-au/Rails_api_backend_auth/blob/master/authentication_introduction.md
+https://github.com/lost-in-Code-au/Rails_api_backend_auth/blob/master/devise.md
