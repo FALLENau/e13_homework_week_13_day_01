@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_request!
 
     def index
      @accounts = current_user.accounts
