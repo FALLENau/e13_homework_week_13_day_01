@@ -206,4 +206,30 @@ Rails -v 5.1.4
   end
 
 ----- At this point authentications should be in state as it was on the 25/09
------ The following is not required and is only to test auth works 
+----- The following is not required and is only to test auth works
+
+15)
+  # Create a controller auth_controller.rb containing:
+
+  class AuthController < ApplicationController
+    before_action :authenticate_request!
+
+      def index
+       render json: {return: "valid user has access"}
+      end
+
+  end
+
+16)
+  # ./config/routes.rb
+  Add
+    - resources :auth
+
+----- Once done use insomina to get at route /auth
+----- In the header tab under the url add a new header
+        first box (My-Header)
+          Authorization
+        second box (value)
+          Bearer <insert-auth-token here>
+----- If the token is correct the object {return: "valid user has access"} is returned
+      else { "errors": ["Not Authenticated"]} is returned
