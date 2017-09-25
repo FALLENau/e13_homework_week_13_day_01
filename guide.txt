@@ -20,9 +20,9 @@ Rails -v 5.1.4
         knows to respond using JSON, which means we don't have to worry about
         rendering anything else.
 
-    Uncomment
+    Uncomment and add to
 
-      - gem 'rack-cors'
+      - gem 'rack-cors', :require => 'rack/cors'
         - Used to ignore browsers cors
 
 3)
@@ -125,4 +125,25 @@ Rails -v 5.1.4
   end
 
 11)
-  # 
+  # ./config.rb
+  replace the entire file contents with and if the server is running restart before
+  testing
+
+    require_relative 'config/environment'
+
+    run Rails.application
+
+    require 'rack/cors'
+    use Rack::Cors do
+
+      # allow all origins in development
+      allow do
+        origins '*'
+        resource '*',
+            :headers => :any,
+            :methods => [:get, :post, :delete, :put, :options]
+      end
+    end
+
+----- The last step uses the gem rack-cors from step 2. I think it requires a
+      server restart to notice any changes.
