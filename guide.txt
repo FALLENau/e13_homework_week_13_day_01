@@ -2,7 +2,7 @@ Rails -v 5.1.4
 
 1)
   #Terminal
-    - rails new  <file-name> --api -d postgresql
+    - rails new <app-name> --api -d postgresql
 
 2)
   # ./gemfile
@@ -27,9 +27,17 @@ Rails -v 5.1.4
 
 3)
   # Terminal
-    - rails g devise:install
+    - bundle
 
 4)
+  # Terminal
+    - rails g devise:install
+
+4.5)
+  # Terminal
+    - createdb <app_name>_development
+
+5)
   # Terminal
     - rails g devise User first_name:string last_name:string
     - rake db:migrate
@@ -37,12 +45,8 @@ Rails -v 5.1.4
       and last name properties.
 
 
-5)
-  # Terminal
-    - createdb rails_auth_development
-
 6)
-  # Create controller registratons_controller.rb containing:
+  # Create controller registrations_controller.rb containing:
 
     class RegistrationsController < ApplicationController
       respond_to :json
@@ -94,8 +98,8 @@ Rails -v 5.1.4
         )
         rescue => error
           puts error
-        end
       end
+    end
 
       "HS256" - the algorithm used to encode JWT. There are a few options but at least one must be given.
 
@@ -206,7 +210,7 @@ Rails -v 5.1.4
   end
 
 ----- At this point authentications should be in state as it was on the 25/09
------ The following is not required and is only to test auth works
+----- All stages 15 and greater are not required and is only to test auth works
 
 15)
   # Create a controller auth_controller.rb containing:
@@ -231,5 +235,6 @@ Rails -v 5.1.4
           Authorization
         second box (value)
           Bearer <insert-auth-token here>
+          
 ----- If the token is correct the object {return: "valid user has access"} is returned
       else { "errors": ["Not Authenticated"]} is returned
