@@ -2,8 +2,12 @@ class RegistrationsController < ApplicationController
   respond_to :json
 
   def create
-    user = User.new(email: "jamesemails@dbdb.com", password: "123456789", password_confirmation: "123456789")
-    render json: user
+    if(User.exists?(email: params[:email]))
+      render json: {respons: "user exists"}
+    else
+      user = User.create({email: params[:email], password: params[:password]})
+      render json: user
+    end
   end
 
 end
