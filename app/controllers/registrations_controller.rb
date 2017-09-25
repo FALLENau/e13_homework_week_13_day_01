@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
       render json: {respons: "user exists"}
     else
       user = User.create({email: params[:email], password: params[:password]})
-      render json: tokenHash(user)
+      render json: token_hash(user)
     end
   end
 
