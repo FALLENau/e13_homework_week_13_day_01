@@ -78,3 +78,28 @@ Rails -v 5.1.4
       return nil
     end
   end
+
+9)
+  # ./lib
+    Create file json_web_token.rb containing:
+
+    class JsonWebToken
+      def self.encode(payload)
+        JWT.encode(payload, Rails.application.secrets.secret_key_base, "HS256")
+      end
+
+      def self.decode(token)
+        return HashWithIndifferentAccess.new(
+          JWT.decode(token, Rails.application.secrets.secret_key_base, true, {algorithm: "HS256"})[0]
+        )
+        rescue => error
+          puts error
+        end
+      end
+
+      "HS256" - the algorithm used to encode JWT. There are a few options but at least one must be given.
+
+10)
+  # ./config/initializers
+  Create file jwt.rb containing:
+    require 'json_web_token'
