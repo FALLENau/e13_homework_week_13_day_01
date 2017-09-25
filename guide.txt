@@ -1,6 +1,8 @@
 Rails -v 5.1.4
 
-1) rails new  <file-name> --api -d postgresql
+1)
+  #Terminal
+    - rails new  <file-name> --api -d postgresql
 
 2)
   # ./gemfile
@@ -33,3 +35,30 @@ Rails -v 5.1.4
     - rake db:migrate
       - Create a new user model with all the devise properties. Also with first name
       and last name properties.
+
+
+5)
+  # Terminal
+    - createdb rails_auth_development
+
+6)
+  Create controller registratons_controller.rb containing:
+
+    class RegistrationsController < ApplicationController
+      respond_to :json
+
+      def create
+        if(User.exists?(email: params[:email]))
+          render json: {respons: "user exists"}
+        else
+          user = User.create({email: params[:email], password: params[:password]})
+          render json: tokenHash(user)
+        end
+      end
+
+    end
+
+7)
+  # ./config/routes.rb
+    Add
+      - resources :registrations
