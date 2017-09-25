@@ -14,6 +14,10 @@ class SessionsController < ApplicationController
 
   end
 
+  def new
+
+  end
+
   private
   def payload(user)
     if(user && user.id)
