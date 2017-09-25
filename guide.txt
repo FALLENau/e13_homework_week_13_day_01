@@ -1,0 +1,24 @@
+Rails -v 5.1.4
+
+1) rails new  <file-name> --api -d postgresql
+
+2)
+  # ./gemfile
+  
+    Add
+
+      - gem 'devise'
+
+      - gem 'jwt'
+        - Allows us to use JsonWebTokens
+
+      - gem 'responders'
+        - Gives us the ability to add a respond_to call into our
+        ApplicationController, so that every controller which inherits from it
+        knows to respond using JSON, which means we don't have to worry about
+        rendering anything else.
+
+    Uncomment
+
+      - gem 'rack-cors'
+        - Used to ignore browsers cors
