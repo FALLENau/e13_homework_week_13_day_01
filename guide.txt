@@ -4,7 +4,7 @@ Rails -v 5.1.4
 
 2)
   # ./gemfile
-  
+
     Add
 
       - gem 'devise'
@@ -22,3 +22,14 @@ Rails -v 5.1.4
 
       - gem 'rack-cors'
         - Used to ignore browsers cors
+
+3)
+  # Terminal
+    - rails g devise:install
+
+4)
+  # Terminal
+    - rails g devise User first_name:string last_name:string
+    - rake db:migrate
+      - Create a new user model with all the devise properties. Also with first name
+      and last name properties.
