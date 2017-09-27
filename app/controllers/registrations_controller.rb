@@ -2,7 +2,7 @@ class RegistrationsController < ApplicationController
 
   def create
     if(User.exists?(email: params[:email]))
-      render json: {respons: "user exists"}
+      render json: {response: "user exists"}
     else
       user = User.create({
         first_name: params[:first_name],
