@@ -129,27 +129,24 @@ Rails -v 5.1.4
   end
 
 11)
-  # ./config.rb
-  replace the entire file contents with and if the server is running restart before
-  testing
+  # ./config/application.rb
+  Add the following
 
-    require_relative 'config/environment'
+  Rails.application.config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins '*'
 
-    run Rails.application
-
-    require 'rack/cors'
-    use Rack::Cors do
-
-      # allow all origins in development
-      allow do
-        origins '*'
-        resource '*',
-            :headers => :any,
-            :methods => [:get, :post, :delete, :put, :options]
-      end
+      resource '*',
+        headers: :any,
+        methods: [:get, :post, :put, :patch, :delete, :options, :head]
     end
+  end
 
------ The last step uses the gem rack-cors from step 2. I think it requires a
+11.5)
+  # Terminal
+    -bundle exec rake middleware
+
+----- Steps 11 and 11.5 uses the gem rack-cors from step 2. I think it requires a
       server restart to notice any changes.
 
 12)
@@ -235,6 +232,6 @@ Rails -v 5.1.4
           Authorization
         second box (value)
           Bearer <insert-auth-token here>
-          
+
 ----- If the token is correct the object {return: "valid user has access"} is returned
       else { "errors": ["Not Authenticated"]} is returned
